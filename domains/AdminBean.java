@@ -13,6 +13,7 @@ public class AdminBean extends MemberBean{
 	
 	@Override
 	public String toString() {
-		return String.format("%s 직원의 사원번호는 %d 입니다", super.getName(), sabun);
+		return String.format("아이디: %s, 비밀번호: %s, 이름: %s, 주민등록번호: %s, 사원번호: %d"
+				, getId(),getPw(), getName(), getSsn(), sabun);
 	}
 }

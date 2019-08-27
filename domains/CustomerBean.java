@@ -1,18 +1,19 @@
 package com.bitcamp.domains;
 
 public class CustomerBean extends MemberBean {
-	private int credit;
+	private String credit;
 
-	public int getCredit() {
+	public String getCredit() {
 		return credit;
 	}
 
-	public void setCredit(int credit) {
+	public void setCredit(String credit) {
 		this.credit = credit;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("%s님의 신용등급은 %d등급 입니다", super.getName(), credit);
+		return String.format("아이디: %s, 비밀번호: %s, 이름: %s, 주민등록번호: %s,  신용도: %s등급"
+				 ,getId(), getPw(), getName(), getSsn(), credit);
 	}
 }
