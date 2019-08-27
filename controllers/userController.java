@@ -16,8 +16,9 @@ public class userController {
 		AccountService as = new AccountServiceImpl();
 		MemberService service = new MemberServiceImpl();
 		while (true) {
-			switch (JOptionPane.showInputDialog(
-					"은행고객시스템 \n 0.종료, 1.회원가입, " + "2.로그인, 3.비밀번호 변경, 4.회원탈퇴, " + "5.계좌생성, 6.입금, 7.출금, 8.계좌삭제")) {
+			switch (JOptionPane.showInputDialog("은행고객시스템 \n 0.종료, 1.회원가입\n "
+												+ "2.로그인, 3.비밀번호 변경, 4.회원탈퇴\n " 
+												+ "5.계좌생성, 6.입금, 7.출금, 8.계좌삭제")) {
 			case "0":
 				JOptionPane.showMessageDialog(null, "0.종료");
 				return;
@@ -52,9 +53,9 @@ public class userController {
 				arr = spec.split(",");
 				loginId = arr[0];
 				loginPw = arr[1];
-				String oldPw = arr[2];
+				String newPw = arr[2];
 				member.setId(loginId);
-				member.setPw(loginPw + "," + oldPw);
+				member.setPw(loginPw + "," + newPw);
 				service.updatePass(member);
 				JOptionPane.showMessageDialog(null, "비밀번호 변경 완료");
 				break;// 비밀번호 변경
@@ -86,7 +87,7 @@ public class userController {
 				as.withdrawMoney(account);
 				JOptionPane.showMessageDialog(null, "출금 완료");
 				break;// 출금
-			case "8":
+			case "8" :
 				spec = JOptionPane.showInputDialog("삭제할 계좌 입력");
 				account.setAccountNum(spec);
 				as.deleteAccountNum(spec);

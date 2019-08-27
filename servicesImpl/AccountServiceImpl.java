@@ -86,10 +86,8 @@ public class AccountServiceImpl implements AccountService{
 
 	@Override
 	public void withdrawMoney(AccountBean param) {
-		System.out.println(Double.parseDouble(account.getMoney()));
 		double deposit = Double.parseDouble(account.getMoney()) - Double.parseDouble(param.getMoney());
 		account.setMoney(String.valueOf(deposit));		
-		System.out.println(deposit);
 	}
 
 	@Override

@@ -103,7 +103,25 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public boolean login(MemberBean param) {
-		return findById(param.getId()).getPw().equals(param.getPw());
+		boolean flag = false;
+		for(int i = 0; i<cCount; i++) {
+			if(param.getId().equals(customers[i].getId())
+					&& param.getPw().equals(customers[i].getPw())) {
+				flag=true;
+				System.out.println(customers[i]);
+				System.out.println(param);
+				break;
+			}
+		}
+		for(int i = 0; i<aCount; i++) {
+			if(param.getId().equals(admins[i].getId())
+					&& param.getPw().equals(admins[i].getPw())) {
+				flag=true;
+				break;
+			}
+		}
+	
+		return flag;
 	}
 
 	@Override
@@ -134,6 +152,7 @@ public class MemberServiceImpl implements MemberService {
 		String[] arr = loginPw.split(",");
 		String oldPw = arr[0];
 		String newPw = arr[1];
+		System.out.println(arr[0]+arr[1]);
 		if (login(param)) {
 			for (int i = 0; i < cCount; i++) {
 				if (loginId.equals(customers[i].getId())) {
@@ -152,7 +171,23 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void deleteMember(MemberBean param) {
-				
+		if(login(param)) {
+			for(int i = 0; i<cCount; i++) {
+				if(param.getId().equals(customers[i].getId())) {
+					customers[i] = customers[cCount-1];
+					cCount--;
+					break;
+				}
+			}
+			for(int i = 0; i<aCount; i++) {
+				if(param.getId().equals(admins[i].getId())) {
+					admins[i] = admins[aCount-1];
+					aCount--;
+					break;
+				}
+			}
+
+		}
 	}
 
 	
